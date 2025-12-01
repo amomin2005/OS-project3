@@ -3,4 +3,7 @@
 #### For today i'm planning on just having basic command line code setup to take in the command line and have it sort everything based off whatever command is sent and also add input error checking so if there are any issues they will be handled straightaway
 #### What I plan on doing today: I plan to to be finished with input error checking and finishing up the basic foundation code to take the commands and actions from command line and sort them based on the action and maybe If i have more time I will start implementing the code to create the idx file structure
 
-
+# Date: 12/1/2025 AND Time: 11:48am - Starting the Session
+### Did you encoutner any problems: I did have small errors in this session when I was using sys.argv to read from the command since for input error handling for a while i wasn't able to figure out how to resertict the user from like giving wrong commands and not enough so i used len(sys.argv) to add into the if statement so if the requirement is not met it will just return and tell them to retype proper command
+#### Did you accomplish goal for this session: Yes i did accomplish my goal for this session which was running the file and setting input error handling so user doesn't put wrong commands and if they do there is instructions on how to fix and also putting the key and values into their respected variable after they are sent by the insert command and also printing out the command names whenever they are types just for debugging purposes
+#### What are you thinking about doing next session: Next session i'm planning on creating the binary file and creating the header with the magic number and the root block id and next block id
