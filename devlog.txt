@@ -1,0 +1,6 @@
+# Date: 12/1/2025 AND Time: 11:48am - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on just having basic command line code setup to take in the command line and have it sort everything based off whatever command is sent and also add input error checking so if there are any issues they will be handled straightaway
+#### What I plan on doing today: I plan to to be finished with input error checking and finishing up the basic foundation code to take the commands and actions from command line and sort them based on the action and maybe If i have more time I will start implementing the code to create the idx file structure
+
+
