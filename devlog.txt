@@ -7,3 +7,8 @@
 ### Did you encoutner any problems: I did have small errors in this session when I was using sys.argv to read from the command since for input error handling for a while i wasn't able to figure out how to resertict the user from like giving wrong commands and not enough so i used len(sys.argv) to add into the if statement so if the requirement is not met it will just return and tell them to retype proper command
 #### Did you accomplish goal for this session: Yes i did accomplish my goal for this session which was running the file and setting input error handling so user doesn't put wrong commands and if they do there is instructions on how to fix and also putting the key and values into their respected variable after they are sent by the insert command and also printing out the command names whenever they are types just for debugging purposes
 #### What are you thinking about doing next session: Next session i'm planning on creating the binary file and creating the header with the magic number and the root block id and next block id
+
+# Date: 12/2/2025 AND Time: 12:56pm - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on working on creating the idx file with the header indicating the rootblockid, nextblockid, and the rest of the spaces
+#### What I plan on doing today: I plan to to be finished with creating the binary file and braindstorm how i will start implementing the inserting into the binary file and search in it, I will work on a basic insert function then later implement split feature for b-tree
