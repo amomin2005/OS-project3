@@ -20,6 +20,7 @@ import os.path
 
 def main():
     # just checking test.idx by prof
+    
     if len(sys.argv) < 2:
         print("Not enough commands. please write commands and the filename after python main.py")
         return
@@ -30,7 +31,7 @@ def main():
         # write to the binary file (write binary)
         # header which will have magic number, root block id, next block id, and free space
         if os.path.exists(idxfile):
-            file = open(idxfile, 'rb')
+            file = open('index.idx', 'rb')
             print(file.read())
             file.close()
             print("File already exists")
@@ -47,7 +48,7 @@ def main():
             # next block 1d is 8 bytes (Next block ID = 1)
             nextblockid = 1
             file.write(nextblockid.to_bytes(8, 'big'))
-            #rest of unused space are 488 bytes 
+            #rest of space are 488 bytes 
             num = 0
             file.write((num.to_bytes(8, 'big')) * 488)
 
@@ -57,9 +58,58 @@ def main():
     elif sys.argv[1] == "insert" and len(sys.argv) == 5:
         key = int(sys.argv[3])
         val = int(sys.argv[4])
-        print("Key: " + str(key))
-        print("Value: " + str(val))
-        print("Insert")
+        file = open(idxfile, 'r+b')
+        file.seek(8)
+        rootnodeblockid = int.from_bytes(file.read(8), 'big')
+        # if root is empty then increment the block id to 1 as the root and 2 as the next and write key,val
+        if rootnodeblockid == 0:
+            file.seek(512)
+            print("Root node is empty and is on Block 0 currently before entering the key,val")
+            # BLOCK ID = 1
+            blockid = 1
+            file.write(blockid.to_bytes(8, 'big'))
+            # Parent = 0
+            parentid = 0
+            file.write(parentid.to_bytes(8, 'big'))
+            # Num Key = 1
+            countkey = 1
+            file.write(countkey.to_bytes(8, 'big'))
+            file.seek(512 + 8 + 8 + 8 + (0 * 8))
+            file.write(key.to_bytes(8, 'big'))
+            file.seek(512 + 8 + 8 + 8 + 152 + (0 * 8))
+            file.write(val.to_bytes(8, 'big'))
+            # changes to 1 since root node only 0 when empty
+            # 512 + 152bytes for the keys
+            # 512 + 152bytes for the values
+            # 512 + 160bytes for child pointers 
+            # child pointer 0 is the left pointer of Parent 0
+            # child pointer 1 is the right pointer of Parent 0
+            # unused space
+
+            update = 1
+            file.seek(8)
+            file.write(update.to_bytes(8, 'big'))
+            updatenext = 2
+            file.seek(16)
+            file.write(updatenext.to_bytes(8, 'big'))
+        else:
+            file.seek(rootnodeblockid * 512 + 8 + 8)
+            cur = int.from_bytes(file.read(8), 'big')
+
+            print("Root node is not empty and currently we are on Block 1 and the header is on Block 0 and the next Block ID is 2")
+            file.seek(512 + 8 + 8 + 8 + (cur * 8))
+            file.write(key.to_bytes(8, 'big'))
+            countkey = cur + 1
+            file.seek(rootnodeblockid * 512 + 8 + 8)
+            file.write(countkey.to_bytes(8, 'big'))
+        # file.seek(512 + 8 + 8 + 8 + (countkey * 8))
+        # print(int.from_bytes(file.read(8), 'big'))
+        # file.seek(512 + 176 + (countkey * 8))
+        # file.write(val.to_bytes(8, 'big'))
+        # file.seek(512 + 176 + (countkey * 8))
+        # print(int.from_bytes(file.read(8), 'big'))
+        
+
     elif sys.argv[1] == "search" and len(sys.argv) == 4:
         print("Searching the value for key " + sys.argv[3])
     elif sys.argv[1] == "load":
