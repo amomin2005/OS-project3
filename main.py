@@ -95,13 +95,19 @@ def main():
         else:
             file.seek(rootnodeblockid * 512 + 8 + 8)
             cur = int.from_bytes(file.read(8), 'big')
+            # as long as it is under 19 it will do it then i will implmenet the split feature
+            if (cur + 1) <= 19:
+                print("Root node is not empty and currently we are on Block 1 and the header is on Block 0 and the next Block ID is 2")
+                file.seek(512 + 8 + 8 + 8 + (cur * 8))
+                file.write(key.to_bytes(8, 'big'))
+                file.seek(512 + 8 + 8 + 8 + 152 + (cur * 8))
+                file.write(val.to_bytes(8, 'big'))
+                countkey = cur + 1
+                file.seek(rootnodeblockid * 512 + 8 + 8)
+                file.write(countkey.to_bytes(8, 'big'))
+            else:
+                print("FULL")
 
-            print("Root node is not empty and currently we are on Block 1 and the header is on Block 0 and the next Block ID is 2")
-            file.seek(512 + 8 + 8 + 8 + (cur * 8))
-            file.write(key.to_bytes(8, 'big'))
-            countkey = cur + 1
-            file.seek(rootnodeblockid * 512 + 8 + 8)
-            file.write(countkey.to_bytes(8, 'big'))
         # file.seek(512 + 8 + 8 + 8 + (countkey * 8))
         # print(int.from_bytes(file.read(8), 'big'))
         # file.seek(512 + 176 + (countkey * 8))
@@ -117,7 +123,20 @@ def main():
     elif sys.argv[1] == "extract":
         print("Extract")
     elif sys.argv[1] == "print":
-        print("print")
+        file = open(idxfile, 'rb')
+        file.seek(512 + 8 + 8)
+        a = []
+        v = []
+        countkey = int.from_bytes(file.read(8), 'big')
+        print(countkey)
+        for i in range(countkey):
+            file.seek(512 + 24 + (i * 8))
+            key = int.from_bytes(file.read(8), 'big')
+            a.append(key)
+            file.seek(512 + 152 + 8 + 8 + 8 + (i * 8))
+            value = int.from_bytes(file.read(8), 'big')
+            v.append(value)
+            print("key: " + str(a[i]) + " Value: " + str(v[i]))
     else:
         print("Unknown command, please choose from :create, insert, search, load, print, extract (then write filename)")
         return
