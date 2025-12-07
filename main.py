@@ -121,19 +121,33 @@ def main():
     elif sys.argv[1] == "load":
         print("Load")
     elif sys.argv[1] == "extract":
-        print("Extract")
-    elif sys.argv[1] == "print":
+        e = sys.argv[3]
+        excelfile = open(e, 'w')
         file = open(idxfile, 'rb')
-        file.seek(512 + 8 + 8)
+        file.seek(512 + 16)
         a = []
         v = []
         countkey = int.from_bytes(file.read(8), 'big')
-        print(countkey)
         for i in range(countkey):
             file.seek(512 + 24 + (i * 8))
             key = int.from_bytes(file.read(8), 'big')
             a.append(key)
-            file.seek(512 + 152 + 8 + 8 + 8 + (i * 8))
+            file.seek(512 + 152 + 16 + 8 + (i * 8))
+            value = int.from_bytes(file.read(8), 'big')
+            v.append(value)
+            excelfile.write("key: " + str(a[i]) + " Value: " + str(v[i]))
+            excelfile.write("\n")
+    elif sys.argv[1] == "print":
+        file = open(idxfile, 'rb')
+        file.seek(512 + 16)
+        a = []
+        v = []
+        countkey = int.from_bytes(file.read(8), 'big')
+        for i in range(countkey):
+            file.seek(512 + 24 + (i * 8))
+            key = int.from_bytes(file.read(8), 'big')
+            a.append(key)
+            file.seek(512 + 152 + 16 + 8 + (i * 8))
             value = int.from_bytes(file.read(8), 'big')
             v.append(value)
             print("key: " + str(a[i]) + " Value: " + str(v[i]))
