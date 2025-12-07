@@ -48,3 +48,9 @@
 ### Thoughts for this sessions: 
 #### For today i'm planning on finishing the extract feature and also doing some minor changes in the devlog to make it look pretty and more informative
 #### What I plan on doing today: I will finish up the extract feature and basically I will use the same approach as the print feature which is opening up the idx file reading the number of keys looping through that and storing the key and val into array and printing it out but for extract we will jsut output it out to the csv file instead, and work on minor changes i devlog to make it more informative
+
+
+# Date: 12/6/2025 AND Time: 9:01pm - Ending the Session
+### Did you encoutner any problems: Only had minor issues with format inside the csv file, but nothing too major or hard since it was basically the same as print but we were just outputting to the csv file, was studying for an exam during this session so didn't really get much chance to work on other features but tmr ill finish up the search feature and get started on load feature, then after tomorrow's session i will work on getting the keys and values sorted and then implement b-tree on it
+#### Did you accomplish goal for this session: Yes i kind of did accomplish my goal for this session, the only issue was that I couldn't really update the devlog file like I planned on but I will do that in later sessions
+#### What are you thinking about doing next session: I'm planning that tmr ill finish up the search feature and get started on load feature, then after tomorrow's session i will work on getting the keys and values sorted and then implement b-tree on it
