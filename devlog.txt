@@ -65,3 +65,9 @@
 ### Did you encoutner any problems: No didn't have any issues since the logic was pretty much the same as print and extract, the only issue was that I was also studying for an exam
 #### Did you accomplish goal for this session: Yes i did
 #### What are you thinking about doing next session: I'm planning on finishing up the load feature and most likely work and finish up the sorting the insert feature and get started on 2level split
+
+
+# Date: 12/8/2025 AND Time: 5:32pm - Starting the Session
+### Thoughts for this sessions: 
+#### Today I'm just planning on brainstorming how I will implement b-tree and maybe do some changes in devlog to make it pretty and maybe add some comments
+#### What I plan on doing today: I will brainstorm how I will do the 2 level split and maybe do some changes in comments, devlog
