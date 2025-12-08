@@ -15,6 +15,7 @@
 
 # 25 + (19*8) = 175 is where val start
 
+import csv
 import sys
 import os.path
 
@@ -54,6 +55,8 @@ def main():
 
             #block 1 512 bytes
             file.write((num.to_bytes(8, 'big')) * 512)
+        
+        file.close()
 
     elif sys.argv[1] == "insert" and len(sys.argv) == 5:
         key = int(sys.argv[3])
@@ -107,7 +110,8 @@ def main():
                 file.write(countkey.to_bytes(8, 'big'))
             else:
                 print("FULL")
-
+        
+        file.close()
         # file.seek(512 + 8 + 8 + 8 + (countkey * 8))
         # print(int.from_bytes(file.read(8), 'big'))
         # file.seek(512 + 176 + (countkey * 8))
@@ -117,9 +121,23 @@ def main():
         
 
     elif sys.argv[1] == "search" and len(sys.argv) == 4:
-        print("Searching the value for key " + sys.argv[3])
+        searchingkey = int(sys.argv[3])
+        file = open(idxfile, 'rb')
+        file.seek(512 + 8 + 8)
+        countkey = int.from_bytes(file.read(8), 'big')
+        print(countkey)
+        file.seek(512 + 8 + 8 + 8)
+        for i in range(countkey):
+            currentkey = int.from_bytes(file.read(8), 'big')
+            if currentkey == searchingkey:
+                file.seek(512 + 152 + 16 + 8 + (i * 8))
+                found = int.from_bytes(file.read(8), 'big')
+                print(found)
+        file.close()
     elif sys.argv[1] == "load":
-        print("Load")
+        e = sys.argv[3]
+        excelfile = open(e, 'r')
+        file = open(idxfile, 'wb')
     elif sys.argv[1] == "extract":
         e = sys.argv[3]
         excelfile = open(e, 'w')
@@ -135,8 +153,10 @@ def main():
             file.seek(512 + 152 + 16 + 8 + (i * 8))
             value = int.from_bytes(file.read(8), 'big')
             v.append(value)
-            excelfile.write("key: " + str(a[i]) + " Value: " + str(v[i]))
+            excelfile.write(str(a[i]) + "," + str(v[i]))
             excelfile.write("\n")
+        file.close()
+        excelfile.close()
     elif sys.argv[1] == "print":
         file = open(idxfile, 'rb')
         file.seek(512 + 16)
@@ -151,6 +171,8 @@ def main():
             value = int.from_bytes(file.read(8), 'big')
             v.append(value)
             print("key: " + str(a[i]) + " Value: " + str(v[i]))
+        
+        file.close()
     else:
         print("Unknown command, please choose from :create, insert, search, load, print, extract (then write filename)")
         return
