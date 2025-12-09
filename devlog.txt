@@ -77,3 +77,9 @@
 ### Did you encoutner any problems: No since I only brainstormed
 #### Did you accomplish goal for this session: No i did not fully, just brainstormed
 #### What are you thinking about doing next session: I'm planning on finishing up the load feature, 2 level split and start on sorted feature
+
+
+# Date: 12/8/2025 AND Time: 5:32pm - Starting the Session
+### Thoughts for this sessions: 
+#### Today I'm hoping on finishing up teh entire 2 level split and the load feature and then tomorrow ill work on getting the sorted feature done
+#### What I plan on doing today: I will finish up 2 level split and load feature, I might not have time to fully implement b-tree recursive split because of time constraint with finals week and multiple assigments and projects due.
