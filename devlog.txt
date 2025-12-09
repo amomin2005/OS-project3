@@ -71,3 +71,9 @@
 ### Thoughts for this sessions: 
 #### Today I'm just planning on brainstorming how I will implement b-tree and maybe do some changes in devlog to make it pretty and maybe add some comments
 #### What I plan on doing today: I will brainstorm how I will do the 2 level split and maybe do some changes in comments, devlog
+
+
+# Date: 12/8/2025 AND Time: 10:52pm - Ending the Session
+### Did you encoutner any problems: No since I only brainstormed
+#### Did you accomplish goal for this session: No i did not fully, just brainstormed
+#### What are you thinking about doing next session: I'm planning on finishing up the load feature, 2 level split and start on sorted feature
