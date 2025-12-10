@@ -121,7 +121,7 @@ Demonstration & Understanding:
 #### What I plan on doing today: Just writing the readme.md
 
 
-# Date: 12/8/2025 AND Time: 10:52pm - Ending the Session
+# Date: 12/10/2025 AND Time: 11:52pm - Ending the Session
 ### Did you encoutner any problems: No since i was only writing readme no issues
 #### Did you accomplish goal for this session: Yes I did
 #### What are you thinking about doing next session: Already wrote down all the explanation in the previous session and the readme
