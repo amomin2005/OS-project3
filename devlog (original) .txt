@@ -1,0 +1,121 @@
+# Date: 12/1/2025 AND Time: 11:48am - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on just having basic command line code setup to take in the command line and have it sort everything based off whatever command is sent and also add input error checking so if there are any issues they will be handled straightaway
+#### What I plan on doing today: I plan to to be finished with input error checking and finishing up the basic foundation code to take the commands and actions from command line and sort them based on the action and maybe If i have more time I will start implementing the code to create the idx file structure
+
+# Date: 12/1/2025 AND Time: 1:58pm - Ending the Session
+### Did you encoutner any problems: I did have small errors in this session when I was using sys.argv to read from the command since for input error handling for a while i wasn't able to figure out how to resertict the user from like giving wrong commands and not enough so i used len(sys.argv) to add into the if statement so if the requirement is not met it will just return and tell them to retype proper command
+#### Did you accomplish goal for this session: Yes i did accomplish my goal for this session which was running the file and setting input error handling so user doesn't put wrong commands and if they do there is instructions on how to fix and also putting the key and values into their respected variable after they are sent by the insert command and also printing out the command names whenever they are types just for debugging purposes
+#### What are you thinking about doing next session: Next session i'm planning on creating the binary file and creating the header with the magic number and the root block id and next block id
+
+# Date: 12/2/2025 AND Time: 12:56pm - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on working on creating the idx file with the header indicating the rootblockid, nextblockid, and the rest of the spaces
+#### What I plan on doing today: I plan to to be finished with creating the binary file and braindstorm how i will start implementing the inserting into the binary file and search in it, I will work on a basic insert function then later implement split feature for b-tree
+
+
+# Date: 12/2/2025 AND Time: 7:25pm - Ending the Session
+### Did you encoutner any problems: I did have some issues trying to do error checking on the idx file like if the user creates a file and then does the same command to create again then it should say file is already created etc and not create it so just had minor issue with that but fixed it using os.path.exists
+#### Did you accomplish goal for this session: Yes i did accomplish my goal for this session which was properly creating the create function to have it create the file with root block id, next block id, and the unused spaces
+#### What are you thinking about doing next session: Next session i'm hoping on implementing the insert function that will insert the key and value in the block 1 initially when the root is at block 0 then once the root node is not empty i will switch it so that the root id is 1 and next id is 2 and basically have the keys and values be implemented in the block 1 as long as only 19 keys are sent then will add the split method but that is for later for now I just want to get insert function working and implement print function to debug and check my output etc
+
+
+# Date: 12/3/2025 AND Time: 2:55pm - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on working on the insert feature where after creating the file the user has the option to insert the key and values and it will insert them into the 152 bytes of keys data and 152 bytes of value data and will increase the byte placement by using the keys count value so like how many keys there are so if there are like 1 key then then the posiiton will be multiplied by that etc
+#### What I plan on doing today: I will start implementing the inserting into the binary file, I will work on a basic insert function then later implement split feature for b-tree
+
+
+# Date: 12/3/2025 AND Time: 5:56pm - Ending the Session
+### Did you encoutner any problems: Yes i had a couple of errors and issues, the main issue was with finding the correct byte location for inserting the key and value, also had the same issue with updating the block ids from 0 and 1 to 1 and 2 for the root block id and next block id. Also had issues with counting the keys inserted since I accidentally created a variable named countkey and gave it the value of 1 after the else statement in the isnert feature so everytime the user ran the insert command it would restart from number of keys 1 and add to that instead of just adding it based off previous value so I fixed that by just removing that variable and just creating it when using the current count, also had some issue with byte location since when i would enter keys and values they would get inserted all over the place so fixed that too
+#### Did you accomplish goal for this session: Yes i did accomplish my goal for this session, the only small thing that I haven't done that I had planned was inserting the values when the root block id is changed to 1 sicne right now it only stores the value when the root is empty so as soon as it gets the insert command the first time that's the only one that it stores.
+#### What are you thinking about doing next session: Next session i'm hoping on finishing up my leftover insert function that I had planned and also work on the print function which when it is called will print out the key, and the values for each of the key that has been inserted
+
+
+# Date: 12/5/2025 AND Time: 11:53pm - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on finsihing up the print feature so that whenever the user types in python main.py print then it will print out all of the keys and values inside of the file in an array format, Also, I will add an if statement for now that will limit the access for inserting keys and it will only allow up to 19 keys per node and if it goes above that for now it will show error but later i will implement the split feature for the b-tree
+#### What I plan on doing today: I will start implementing the print feature and will also do an if condition so that the keys stay within 19 keys and doesn't go beyond that without spliting the node since for b-tree we split the node since the minimal degree of our b-tree is 10, thsi will give us 19 keys since if we do (2(10) - 1) that is 19 since the formula to find maximum keys is 2d - 1, which means the maximum number of keys per node is 19 so once we reach 19 keys and the user wants to add another key before adding that key we will split the node, as mentioned in our notes from class, we will first split the node if the number of keys is already at max then we insert upcoming key. So to split the logic will be that first we reach the maximum number of keys then we find the median and move it to the root node and sort out the tree with the left, and right child nodes which will have the keys less than the root node key on the left and the keys more than the root node key on the right.
+
+
+# Date: 12/5/2025 AND Time: 8:00pm - Ending the Session
+### Did you encoutner any problems: Yes i did have 1-2 issues, they were mainly with the insert feature so one issue from last time was that when the root node is empty it was successfully adding the key and value to their respectful position but when the root block id was not empty and it moved to block id 1 and next block id moved to 2 then the key and val were not implemented so they can be added so I just added that it wasn't a issue but a feature I needed to finsih up from last time, One issue I had was that wigh basic insert feature I was able to send the keys and values beyond the 19 max key count so if the number of keys went way beyond 19 or more it just kept adding it so i added an if statement to fix this issue so that after reaching the count of keys to 19 just stop inserting anything and jsut display that the node is full currently (ofc this will be replaced by split later but this is the condition i have rn for debugging stuff)
+#### Did you accomplish goal for this session: Yes i did accomplish my goal for this session and I also went beyond that since I didn't have in my mind today that I will work on the insert feature but I ended up doing the goal i had for today and the insert feature touch ups
+#### What are you thinking about doing next session: Next session i'm hoping on finishing up the excract feature since it will very similar logic to the print the only thing we will need to do is instead of just writing the keys and values to the print we will just need to get the filename for csv from the user and write it directly there with correct formatting which should take much time but since I have couple of exams I will be studying for those too so I will see how much I can finish up in my next session
+
+
+# Date: 12/6/2025 AND Time: 1:08pm - Starting the Session
+### Thoughts for this sessions: 
+#### For today i'm planning on finishing the extract feature and also doing some minor changes in the devlog to make it look pretty and more informative
+#### What I plan on doing today: I will finish up the extract feature and basically I will use the same approach as the print feature which is opening up the idx file reading the number of keys looping through that and storing the key and val into array and printing it out but for extract we will jsut output it out to the csv file instead, and work on minor changes i devlog to make it more informative
+
+
+# Date: 12/6/2025 AND Time: 9:01pm - Ending the Session
+### Did you encoutner any problems: Only had minor issues with format inside the csv file, but nothing too major or hard since it was basically the same as print but we were just outputting to the csv file, was studying for an exam during this session so didn't really get much chance to work on other features but tmr ill finish up the search feature and get started on load feature, then after tomorrow's session i will work on getting the keys and values sorted and then implement b-tree on it
+#### Did you accomplish goal for this session: Yes i kind of did accomplish my goal for this session, the only issue was that I couldn't really update the devlog file like I planned on but I will do that in later sessions
+#### What are you thinking about doing next session: I'm planning that tmr ill finish up the search feature and get started on load feature, then after tomorrow's session i will work on getting the keys and values sorted and then implement b-tree on it
+
+
+# Date: 12/7/2025 AND Time: 4:21pm - Starting the Session
+### Thoughts for this sessions: 
+#### I'm planning on finishing up the search feature and getting started on load feature or ig having a basic idea ready
+#### What I plan on doing today: I will finish up the search feature and start on load feature
+
+# Date: 12/7/2025 AND Time: 11:07pm - Ending the Session
+### Did you encoutner any problems: No didn't have any issues since the logic was pretty much the same as print and extract, the only issue was that I was also studying for an exam
+#### Did you accomplish goal for this session: Yes i did
+#### What are you thinking about doing next session: I'm planning on finishing up the load feature and most likely work and finish up the sorting the insert feature and get started on 2level split
+
+
+# Date: 12/8/2025 AND Time: 5:32pm - Starting the Session
+### Thoughts for this sessions: 
+#### Today I'm just planning on brainstorming how I will implement b-tree and maybe do some changes in devlog to make it pretty and maybe add some comments
+#### What I plan on doing today: I will brainstorm how I will do the 2 level split and maybe do some changes in comments, devlog
+
+
+# Date: 12/8/2025 AND Time: 10:52pm - Ending the Session
+### Did you encoutner any problems: No since I only brainstormed
+#### Did you accomplish goal for this session: No i did not fully, just brainstormed
+#### What are you thinking about doing next session: I'm planning on finishing up the load feature, 2 level split and start on sorted feature
+
+
+# Date: 12/9/2025 AND Time: 3:42pm - Starting the Session
+### Thoughts for this sessions: 
+#### Today I'm hoping on finishing up teh entire 2 level split and the load feature and then tomorrow ill work on getting the sorted feature done
+#### What I plan on doing today: I will finish up 2 level split and load feature, I might not have time to fully implement b-tree recursive split because of time constraint with finals week and multiple assigments and projects due.
+
+# Date: 12/9/2025 AND Time: 10:18pm - Ending the Session
+### Did you encoutner any problems: 
+Yes I had multiple issues with the 2 level split, load, and changing the insert feature to a function, and trying to implement sort and b-tree. 
+I had a lot of issues with these which was extremeley frustrating because of the amount of time I put in for this project
+
+#### Did you accomplish goal for this session: Yes I did 
+I implemented the 6 commands (create, insert, search, load, print, extract)
+I implemented 2 level for b-tree split so whenever the number of keys reachs the max of 19 it splits into root node, and 2 child nodes (left and right) and the middle key goes to the root node and every key less than that whch will be half of the 19 goes to the left child and the other half goes to the right child
+I implemented parent child relationships by adding the block ID for each child node into the bytes for child pointers in the parent node
+I implemented multiple error handlings for wrong commands, wrong values added, or if the file has already been created then don't create it again, and if the file doesn't exist then dont do any of the features such as inserting
+I implemented the complete file format as required in the PDF which asked for a file with size of 512 blocks and the first block being dedicated to the header (which will include the magic number, root block id, next block id, and the rest of the byte space will be unused)
+I implemnted the root block which has the first 8 bytes for the block id, next 8 for the parent id, next 8 for the number of keys, next 152 for the keys, next 152 for the values for those keys, and next 152 for the child pointers, and the rest as unused
+
+Demonstration & Understanding:
+I understand that B-trees split when the nodes have reached their maximum key capacity and in our case its 19 keys so if the user wants to add any key after that the node will split into root, and 2 child nodes with the middle key going to the root and the rest getting divided into elft and right child nodes
+Since i implemented the 2 level b-tree it shows that my Understanding of b-tree is pretty sharp and I understand how b-tree works 
+Also as mentioned in the pdf, I made sure that not to load everything into memory and only use 3 nodes at a time which I did 
+And I have also learned about big endian encoding in python, block based storage in idx files, and file growth
+For the sorted concept I wasn't able to properly implement this correctly since while I did try to sort it I had some issues with my output which ended up breaking the entire code so unfortunately I had to remove that feature
+If I had more time to work on this and in the future, I will implement the b-tree recursively so any node can split not just the root node up til the 2 leveland I will also sort the b-tree by using bubble or insertion sort
+I would also test the code with 50+ keys to see if it properly manages the b-tree or not
+I have also done very good documentation of my progress for this past 10 days
+#### What are you thinking about doing next session: I'm planning on creating a readme and fixing devlog and maybe adding some comments in the code
+
+
+# Date: 12/10/2025 AND Time: 11:01pm - Starting the Session
+### Thoughts for this sessions: 
+#### I'm just writing the readme.md today and fixing a minor issue w extract command
+#### What I plan on doing today: Just writing the readme.md
+
+
+# Date: 12/10/2025 AND Time: 11:21pm - Ending the Session
+### Did you encoutner any problems: No since i was only writing readme no issues
+#### Did you accomplish goal for this session: Yes I did
+#### What are you thinking about doing next session: Already wrote down all the explanation in the previous session and the readme
