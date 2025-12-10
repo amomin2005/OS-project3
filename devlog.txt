@@ -107,3 +107,9 @@ If I had more time to work on this and in the future, I will implement the b-tre
 I would also test the code with 50+ keys to see if it properly manages the b-tree or not
 I have also done very good documentation of my progress for this past 10 days
 #### What are you thinking about doing next session: I'm planning on creating a readme and fixing devlog and maybe adding some comments in the code
+
+
+# Date: 12/10/2025 AND Time: 11:01pm - Starting the Session
+### Thoughts for this sessions: 
+#### I'm just writing the readme.md today and fixing a minor issue w extract command
+#### What I plan on doing today: Just writing the readme.md
