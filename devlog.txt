@@ -79,7 +79,31 @@
 #### What are you thinking about doing next session: I'm planning on finishing up the load feature, 2 level split and start on sorted feature
 
 
-# Date: 12/8/2025 AND Time: 5:32pm - Starting the Session
+# Date: 12/9/2025 AND Time: 3:42pm - Starting the Session
 ### Thoughts for this sessions: 
 #### Today I'm hoping on finishing up teh entire 2 level split and the load feature and then tomorrow ill work on getting the sorted feature done
 #### What I plan on doing today: I will finish up 2 level split and load feature, I might not have time to fully implement b-tree recursive split because of time constraint with finals week and multiple assigments and projects due.
+
+# Date: 12/9/2025 AND Time: 10:18pm - Ending the Session
+### Did you encoutner any problems: 
+Yes I had multiple issues with the 2 level split, load, and changing the insert feature to a function, and trying to implement sort and b-tree. 
+I had a lot of issues with these which was extremeley frustrating because of the amount of time I put in for this project
+
+#### Did you accomplish goal for this session: Yes I did 
+I implemented the 6 commands (create, insert, search, load, print, extract)
+I implemented 2 level for b-tree split so whenever the number of keys reachs the max of 19 it splits into root node, and 2 child nodes (left and right) and the middle key goes to the root node and every key less than that whch will be half of the 19 goes to the left child and the other half goes to the right child
+I implemented parent child relationships by adding the block ID for each child node into the bytes for child pointers in the parent node
+I implemented multiple error handlings for wrong commands, wrong values added, or if the file has already been created then don't create it again, and if the file doesn't exist then dont do any of the features such as inserting
+I implemented the complete file format as required in the PDF which asked for a file with size of 512 blocks and the first block being dedicated to the header (which will include the magic number, root block id, next block id, and the rest of the byte space will be unused)
+I implemnted the root block which has the first 8 bytes for the block id, next 8 for the parent id, next 8 for the number of keys, next 152 for the keys, next 152 for the values for those keys, and next 152 for the child pointers, and the rest as unused
+
+Demonstration & Understanding:
+I understand that B-trees split when the nodes have reached their maximum key capacity and in our case its 19 keys so if the user wants to add any key after that the node will split into root, and 2 child nodes with the middle key going to the root and the rest getting divided into elft and right child nodes
+Since i implemented the 2 level b-tree it shows that my Understanding of b-tree is pretty sharp and I understand how b-tree works 
+Also as mentioned in the pdf, I made sure that not to load everything into memory and only use 3 nodes at a time which I did 
+And I have also learned about big endian encoding in python, block based storage in idx files, and file growth
+For the sorted concept I wasn't able to properly implement this correctly since while I did try to sort it I had some issues with my output which ended up breaking the entire code so unfortunately I had to remove that feature
+If I had more time to work on this and in the future, I will implement the b-tree recursively so any node can split not just the root node up til the 2 leveland I will also sort the b-tree by using bubble or insertion sort
+I would also test the code with 50+ keys to see if it properly manages the b-tree or not
+I have also done very good documentation of my progress for this past 10 days
+#### What are you thinking about doing next session: I'm planning on creating a readme and fixing devlog and maybe adding some comments in the code
