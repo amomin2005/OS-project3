@@ -68,6 +68,7 @@ def insert(file, key, val):
             file.seek(rootnodeblockid * 512 + 8 + 8)
             file.write(countkey.to_bytes(8, 'big'))
         else:
+            # if split need to happen then
             file.seek(8)
             c = int.from_bytes(file.read(8), 'big')
             c += 1
@@ -240,7 +241,7 @@ def main():
             return
         else:
             print("File doesn't exist")
-        
+    # loads .csv file and inserts into the keys area
     elif sys.argv[1] == "load":
         e = sys.argv[3]
         if os.path.exists(idxfile) and os.path.exists(e):
@@ -254,8 +255,13 @@ def main():
                 insert(file, key,val)
             file.close()
             excelfile.close()
-        elif sys.argv[1] == "extract":
-            e = sys.argv[3]
+            return
+        else:
+            print("File doesn't exist")
+    # extracts the data to the .csv file
+    elif sys.argv[1] == "extract":
+        e = sys.argv[3]
+        if os.path.exists(idxfile):
             excelfile = open(e, 'w')
             file = open(idxfile, 'rb')
             file.seek(512 + 512 + 16)
@@ -285,8 +291,8 @@ def main():
                 v.append(value)
                 excelfile.write(str(a[i]) + "," + str(v[i]))
                 excelfile.write("\n")
-            
-            
+                
+                
             file.seek(512 + 512 + 512 + 16)
             a2 = []
             v2 = []
@@ -302,12 +308,12 @@ def main():
                 excelfile.write("\n")
             file.close()
             excelfile.close()
+            
             return
         else:
             print("File doesn't exist")
-        
+    #prints out the kyes,value
     elif sys.argv[1] == "print":
-
         if os.path.exists(idxfile):
             file = open(idxfile, 'rb')
             file.seek(512 + 512 + 16)
